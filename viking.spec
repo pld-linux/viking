@@ -7,11 +7,15 @@ Group:		X11/Applications
 URL:		http://viking.sourceforge.net/
 Source0:	http://dl.sourceforge.net/viking/%{name}-%{version}.tar.gz
 # Source0-md5:	b4daa3e395a5dbc156b1ab5f092e4009
+Patch0:		%{name}-opencaching.patch
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	curl-devel
 BuildRequires:	expat-devel
 BuildRequires:	gettext
 BuildRequires:	gpsd-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	libtool
 BuildRequires:	libxslt-progs
 BuildRequires:	perl(XML::Parser)
 BuildRequires:	pkgconfig
@@ -25,8 +29,14 @@ things, etc. It is written in C with the GTK+ 2.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
+%{__libtoolize}
+%{__aclocal} -I m4
+%{__autoconf}
+%{__autoheader}
+%{__automake}
 %configure
 %{__make}
 
@@ -55,5 +65,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog COPYING NEWS README TODO doc/
 %attr(755,root,root) %{_bindir}/viking
 %attr(755,root,root) %{_bindir}/viking-remote
+%attr(755,root,root) %{_bindir}/vik_ocget
 %{_desktopdir}/viking.desktop
 %{_pixmapsdir}/viking_icon.png
