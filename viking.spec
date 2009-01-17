@@ -1,12 +1,12 @@
 Summary:	GPS data editor and analyzer
 Name:		viking
-Version:	0.9.5
+Version:	0.9.7
 Release:	1
 License:	GPLv2
 Group:		X11/Applications
 URL:		http://viking.sourceforge.net/
 Source0:	http://dl.sourceforge.net/viking/%{name}-%{version}.tar.gz
-# Source0-md5:	b4daa3e395a5dbc156b1ab5f092e4009
+# Source0-md5:	17823d2ad0a99f76d1d2a831c63f1201
 Patch0:		%{name}-opencaching.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -52,10 +52,10 @@ rm -f doc/dev/Makefile*
 make test
 
 %post
-[ ! -x %{_bindir}/update-desktop-database ] || %{_bindir}/update-desktop-database >/dev/null 2>&1 ||:
+%update_desktop_database_post
 
 %postun
-[ ! -x %{_bindir}/update-desktop-database ] || %{_bindir}/update-desktop-database >/dev/null 2>&1
+%update_desktop_database_postun
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -67,4 +67,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/viking-remote
 %attr(755,root,root) %{_bindir}/vik_ocget
 %{_desktopdir}/viking.desktop
-%{_pixmapsdir}/viking_icon.png
+%{_pixmapsdir}/viking.png
