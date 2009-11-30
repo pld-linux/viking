@@ -1,12 +1,12 @@
 Summary:	GPS data editor and analyzer
 Name:		viking
-Version:	0.9.8
+Version:	0.9.9
 Release:	1
 License:	GPLv2
 Group:		X11/Applications
 URL:		http://viking.sourceforge.net/
 Source0:	http://dl.sourceforge.net/viking/%{name}-%{version}.tar.gz
-# Source0-md5:	62c8cce4c755aba53edccea13284f7b8
+# Source0-md5:	5df46455c4842cc5c5ed016e1df2f48c
 Patch0:		%{name}-opencaching.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
