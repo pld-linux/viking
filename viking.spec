@@ -2,23 +2,25 @@ Summary:	GPS data editor and analyzer
 Name:		viking
 Version:	0.9.9
 Release:	1
-License:	GPLv2
+License:	GPL v2
 Group:		X11/Applications
-URL:		http://viking.sourceforge.net/
 Source0:	http://dl.sourceforge.net/viking/%{name}-%{version}.tar.gz
 # Source0-md5:	5df46455c4842cc5c5ed016e1df2f48c
 Patch0:		%{name}-opencaching.patch
+URL:		http://viking.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	curl-devel
 BuildRequires:	expat-devel
-BuildRequires:	gettext
+BuildRequires:	gettext-devel
 BuildRequires:	gpsd-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	intltool
 BuildRequires:	libtool
 BuildRequires:	libxslt-progs
-BuildRequires:	perl(XML::Parser)
+BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig
+BuildRequires:	rpm-pythonprov
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
