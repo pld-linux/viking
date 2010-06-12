@@ -1,11 +1,11 @@
 Summary:	GPS data editor and analyzer
 Name:		viking
-Version:	0.9.9
+Version:	0.9.94
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://dl.sourceforge.net/viking/%{name}-%{version}.tar.gz
-# Source0-md5:	5df46455c4842cc5c5ed016e1df2f48c
+# Source0-md5:	25dc0a09f1a3e39e99a6324d79c740e6
 Patch0:		%{name}-opencaching.patch
 URL:		http://viking.sourceforge.net/
 BuildRequires:	autoconf
@@ -46,25 +46,31 @@ things, etc. It is written in C with the GTK+ 2.
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install iconsdir=%{_pixmapsdir}
 
-%find_lang %{name}
-rm -f doc/Makefile*
-rm -f doc/dev/Makefile*
+# copy before removing Makefiles so --short-circuit -bi will work
+rm -rf dist-doc
+cp -a doc dist-doc
+rm -f dist-doc/Makefile*
+rm -f dist-doc/*/Makefile*
+
+%find_lang %{name} --with-gnome --with-omf 
 
 %check
 make test
 
 %post
 %update_desktop_database_post
+%update_icon_cache hicolor
 
 %postun
 %update_desktop_database_postun
+%update_icon_cache hicolor
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO doc/
+%doc AUTHORS ChangeLog COPYING NEWS README TODO dist-doc/*
 %attr(755,root,root) %{_bindir}/viking
 %attr(755,root,root) %{_bindir}/viking-remote
 %attr(755,root,root) %{_bindir}/vik_ocget
