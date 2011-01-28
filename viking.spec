@@ -4,24 +4,26 @@ Version:	0.9.94
 Release:	2
 License:	GPL v2
 Group:		X11/Applications
-Source0:	http://dl.sourceforge.net/viking/%{name}-%{version}.tar.gz
+Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.gz
 # Source0-md5:	25dc0a09f1a3e39e99a6324d79c740e6
 Patch0:		%{name}-opencaching.patch
 URL:		http://viking.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	curl-devel
+BuildRequires:	docbook-dtd412-xml
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
+BuildRequires:	gnome-doc-utils
 BuildRequires:	gpsd-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
 BuildRequires:	libtool
+BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
 BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
-BuildRequires:	gnome-doc-utils
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -53,7 +55,7 @@ cp -a doc dist-doc
 rm -f dist-doc/Makefile*
 rm -f dist-doc/*/Makefile*
 
-%find_lang %{name} --with-gnome --with-omf 
+%find_lang %{name} --with-gnome --with-omf
 
 %check
 make test
