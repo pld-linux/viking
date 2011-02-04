@@ -1,7 +1,7 @@
 Summary:	GPS data editor and analyzer
 Name:		viking
 Version:	0.9.94
-Release:	2
+Release:	3
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.gz
@@ -24,6 +24,8 @@ BuildRequires:	libxslt-progs
 BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
