@@ -1,11 +1,11 @@
 Summary:	GPS data editor and analyzer
 Name:		viking
-Version:	0.9.94
-Release:	4
+Version:	1.2.2
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.gz
-# Source0-md5:	25dc0a09f1a3e39e99a6324d79c740e6
+# Source0-md5:	460121f135ddc499bb4e51e61fa7fba7
 Patch0:		%{name}-opencaching.patch
 URL:		http://viking.sourceforge.net/
 BuildRequires:	autoconf
@@ -38,7 +38,12 @@ things, etc. It is written in C with the GTK+ 2.
 %setup -q
 %patch0 -p1
 
+# workaround to make automake happy
+install -d doc/reference
+touch doc/reference/Makefile.in
+
 %build
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
