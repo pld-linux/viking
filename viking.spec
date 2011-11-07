@@ -1,7 +1,12 @@
+#
+# TODO:
+#	- real-time GPS tracking is disabled, as it doesn't build with current
+#	gpsd-devel. It should be re-enabled after fixed.
+#
 Summary:	GPS data editor and analyzer
 Name:		viking
 Version:	1.2.2
-Release:	1
+Release:	2
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.gz
@@ -15,7 +20,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-doc-utils
-BuildRequires:	gpsd-devel
+#BuildRequires:	gpsd-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
 BuildRequires:	libtool
@@ -49,7 +54,8 @@ touch doc/reference/Makefile.in
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure
+%configure \
+	--disable-realtime-gps-tracking
 %{__make}
 
 %install
