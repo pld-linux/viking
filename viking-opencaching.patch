@@ -23,8 +23,8 @@ diff -durN viking-0.9.5.orig/src/Makefile.am viking-0.9.5/src/Makefile.am
  	googlesearch.c googlesearch.h \
 diff -durN viking-0.9.5.orig/src/datasource_oc.c viking-0.9.5/src/datasource_oc.c
 --- viking-0.9.5.orig/src/datasource_oc.c	1970-01-01 01:00:00.000000000 +0100
-+++ viking-0.9.5/src/datasource_oc.c	2008-07-22 10:41:01.000000000 +0200
-@@ -0,0 +1,211 @@
++++ viking-0.9.5/src/datasource_oc.c	2011-11-09 14:37:10.533372755 +0100
+@@ -0,0 +1,213 @@
 +/*
 + * viking -- GPS Data and Topo Analyzer, Explorer, and Manager
 + *
@@ -86,6 +86,7 @@ diff -durN viking-0.9.5.orig/src/datasource_oc.c viking-0.9.5/src/datasource_oc.
 +  VIK_DATASOURCE_SHELL_CMD,
 +  VIK_DATASOURCE_ADDTOLAYER,
 +  VIK_DATASOURCE_INPUTTYPE_NONE,
++  FALSE,
 +  TRUE,
 +  (VikDataSourceInitFunc)		datasource_oc_init,
 +  (VikDataSourceCheckExistenceFunc)	datasource_oc_check_existence,
@@ -93,7 +94,8 @@ diff -durN viking-0.9.5.orig/src/datasource_oc.c viking-0.9.5/src/datasource_oc.
 +  (VikDataSourceGetCmdStringFunc)	datasource_oc_get_cmd_string,
 +  (VikDataSourceProgressFunc)		NULL,
 +  (VikDataSourceAddProgressWidgetsFunc)	NULL,
-+  (VikDataSourceCleanupFunc)		datasource_oc_cleanup
++  (VikDataSourceCleanupFunc)		datasource_oc_cleanup,
++  (VikDataSourceOffFunc)               NULL,
 +};
 +
 +void a_datasource_oc_init()
