@@ -5,12 +5,12 @@
 #
 Summary:	GPS data editor and analyzer
 Name:		viking
-Version:	1.2.2
-Release:	3
+Version:	1.3.1
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.gz
-# Source0-md5:	460121f135ddc499bb4e51e61fa7fba7
+# Source0-md5:	8ba16b86218e5e7991d9c181b0061973
 Patch0:		%{name}-opencaching.patch
 URL:		http://viking.sourceforge.net/
 BuildRequires:	autoconf
@@ -20,7 +20,7 @@ BuildRequires:	docbook-dtd412-xml
 BuildRequires:	expat-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-doc-utils
-#BuildRequires:	gpsd-devel
+BuildRequires:	gpsd-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
 BuildRequires:	libtool
@@ -41,7 +41,7 @@ things, etc. It is written in C with the GTK+ 2.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 # workaround to make automake happy
 install -d doc/reference
@@ -54,8 +54,7 @@ touch doc/reference/Makefile.in
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-%configure \
-	--disable-realtime-gps-tracking
+%configure
 %{__make}
 
 %install
@@ -88,7 +87,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog COPYING NEWS README TODO dist-doc/*
 %attr(755,root,root) %{_bindir}/viking
-%attr(755,root,root) %{_bindir}/viking-remote
-%attr(755,root,root) %{_bindir}/vik_ocget
 %{_desktopdir}/viking.desktop
 %{_pixmapsdir}/viking.png
