@@ -1,8 +1,3 @@
-#
-# TODO:
-#	- real-time GPS tracking is disabled, as it doesn't build with current
-#	gpsd-devel. It should be re-enabled after fixed.
-#
 Summary:	GPS data editor and analyzer
 Name:		viking
 Version:	1.3.1
@@ -11,19 +6,13 @@ License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.gz
 # Source0-md5:	8ba16b86218e5e7991d9c181b0061973
-Patch0:		%{name}-opencaching.patch
 URL:		http://viking.sourceforge.net/
-BuildRequires:	autoconf
-BuildRequires:	automake
 BuildRequires:	curl-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	expat-devel
-BuildRequires:	gettext-devel
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gpsd-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
-BuildRequires:	intltool
-BuildRequires:	libtool
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
 BuildRequires:	perl-XML-Parser
@@ -41,31 +30,14 @@ things, etc. It is written in C with the GTK+ 2.
 
 %prep
 %setup -q
-#%patch0 -p1
-
-# workaround to make automake happy
-install -d doc/reference
-touch doc/reference/Makefile.in
 
 %build
-%{__intltoolize}
-%{__libtoolize}
-%{__aclocal} -I m4
-%{__autoconf}
-%{__autoheader}
-%{__automake}
 %configure
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} DESTDIR=$RPM_BUILD_ROOT install iconsdir=%{_pixmapsdir}
-
-# copy before removing Makefiles so --short-circuit -bi will work
-rm -rf dist-doc
-cp -a doc dist-doc
-rm -f dist-doc/Makefile*
-rm -f dist-doc/*/Makefile*
 
 %find_lang %{name} --with-gnome --with-omf
 
@@ -85,7 +57,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog COPYING NEWS README TODO dist-doc/*
+%doc AUTHORS ChangeLog COPYING NEWS README TODO doc/*
 %attr(755,root,root) %{_bindir}/viking
 %{_desktopdir}/viking.desktop
 %{_pixmapsdir}/viking.png
