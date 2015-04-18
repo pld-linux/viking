@@ -1,26 +1,30 @@
 Summary:	GPS data editor and analyzer
 Name:		viking
-Version:	1.5.1
+Version:	1.6
 Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.bz2
-# Source0-md5:	61ec920d331a4c24316d17f0954c5349
+# Source0-md5:	ffbebeb67d83d78ba8650f4bf8b6fc4f
 URL:		http://viking.sourceforge.net/
 BuildRequires:	curl-devel
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	expat-devel
+BuildRequires:	gexiv2-devel
 BuildRequires:	gnome-doc-utils
 BuildRequires:	gpsd-devel
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	libxml2-progs
 BuildRequires:	libxslt-progs
+BuildRequires:	mapnik-devel
 BuildRequires:	perl-XML-Parser
 BuildRequires:	pkgconfig
 BuildRequires:	rpm-pythonprov
 Requires(post,postun):	gtk-update-icon-cache
 Requires(post,postun):	hicolor-icon-theme
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		filterout	-flto
 
 %description
 Viking is a free/open source program to manage GPS data. You can
