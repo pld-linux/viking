@@ -1,11 +1,11 @@
 Summary:	GPS data editor and analyzer
 Name:		viking
-Version:	1.6
-Release:	2
+Version:	1.6.1
+Release:	1
 License:	GPL v2
 Group:		X11/Applications
 Source0:	http://downloads.sourceforge.net/viking/%{name}-%{version}.tar.bz2
-# Source0-md5:	ffbebeb67d83d78ba8650f4bf8b6fc4f
+# Source0-md5:	e79d8a092ef12a01975d4b92d30d9eb1
 URL:		http://viking.sourceforge.net/
 BuildRequires:	curl-devel
 BuildRequires:	docbook-dtd412-xml
